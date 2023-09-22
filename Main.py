@@ -6,7 +6,7 @@ def menu():
     while opcion!="d":
         print("Que desea cotizar?")
         print("1 Fiesta Gala")
-        print("2 Fiesta Cumpleanios")
+        print("2 Fiesta Cumpleaños")
         print("d Detener Programa")
         opcion = input("Ingrese una opcion: ")
         if opcion == "1" or opcion == "2":
@@ -40,7 +40,23 @@ def cotizar_fiesta_gala():
         print("Debes ingresar un valor entero")
 
 def cotizar_fiesta_cumplanios():
-    pass
+        try:
+            personas = int(input("Ingrese numero de personas: "))
+            if personas > 0:
+                cumple = FiestaCumpleanios(personas)
+                cumple.calcular_costo_decoracion(decidete("decorar"))
+                if decidete("personalizar pastel"):
+                    texto = input("Ingrese texto personalizado: ")
+                    cumple.personalizar_pastel(texto)
+                    cumple.calcular_costo_pastel()
+                total = cumple.calcular_costo()
+                print(cumple)
+                print(f"Total: {total}")
+                
+            else:
+                print("ERROR. Debes ingresar un valor mayor a 1")
+        except:
+            print("Debes ingresar un valor entero")
 
 
 def decidete(texto:str):
